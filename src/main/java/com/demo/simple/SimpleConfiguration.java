@@ -9,7 +9,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 @Configuration
 public class SimpleConfiguration {
 	
-	private static final int maxThreads = 5;
+	private static final int MAX_THREADS = 5;
 	
 	// ThreadPoolTaskExecutor 를 활용하여 (비동기) 멀티 쓰레드 및 동시 실행 제한 설정
 	/*

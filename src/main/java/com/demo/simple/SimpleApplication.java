@@ -29,9 +29,9 @@ public class SimpleApplication {
 
 		ApplicationContext context = SpringApplication.run (SimpleApplication.class, args);
 		
-		workerDemo (context);
+		// workerDemo (context);
 		// resultDemo (context); 
-		// lottoDemo (context);
+		lottoDemo (context);
 	}
 	
 	private static void workerDemo (ApplicationContext context) {
@@ -56,10 +56,20 @@ public class SimpleApplication {
 				futures.toArray (new CompletableFuture [futures.size ()])
         );
 
+        // 20240123 Before fix sonar issues
+		// Replace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'
+		/*
         CompletableFuture <List <Integer []>> completableFutures = allOfFutures.thenApply (v -> {
             return futures.stream ()
                     .map (CompletableFuture::join)
                     .collect (Collectors.toList ());
+        });
+		*/
+		
+        CompletableFuture <List <Integer []>> completableFutures = allOfFutures.thenApply (v -> {
+            return futures.stream ()
+                    .map (CompletableFuture::join)
+                    .toList ();
         });
 
         List <Integer []> results = new ArrayList <> ();
@@ -79,9 +89,18 @@ public class SimpleApplication {
 		List <String> latest = lottoService.getList (maxList);
         log.info ("{}", latest);
         
-		List <CompletableFuture <List <Integer>>> futures = new ArrayList <> ();
+        // 20240123 Before fix sonar issues
+        // Remove this unnecessary cast to "CompletableFuture".
+        /*
+        List <CompletableFuture <List <Integer>>> futures = new ArrayList <> ();
         for (String round : latest) {
         	futures.add ((CompletableFuture <List <Integer>>) lottoService.getInfo (round));
+        }
+        */
+
+        List <CompletableFuture <List <Integer>>> futures = new ArrayList <> ();
+        for (String round : latest) {
+        	futures.add (lottoService.getInfo (round));
         }
 
         CompletableFuture <Void> allOfFutures = CompletableFuture.allOf (
