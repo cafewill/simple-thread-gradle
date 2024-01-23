@@ -91,7 +91,7 @@ public class SimpleApplication {
         CompletableFuture <List <List <Integer>>> completableFutures = allOfFutures.thenApply (v -> {
             return futures.stream ()
                     .map (CompletableFuture::join)
-                    .collect (Collectors.toList ());
+                    .toList ();
         });
 
         List <List <Integer>> results = new ArrayList <> ();

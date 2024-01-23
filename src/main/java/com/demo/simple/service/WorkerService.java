@@ -1,6 +1,6 @@
 package com.demo.simple.service;
 
-import java.util.Random;
+import java.security.SecureRandom;
 
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class WorkerService {
 	
-	private static final Random random = new Random ();
+	private static final SecureRandom random = new SecureRandom ();
 	
     @Async
     public void doJob (int num) {

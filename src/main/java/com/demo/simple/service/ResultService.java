@@ -1,6 +1,6 @@
 package com.demo.simple.service;
 
-import java.util.Random;
+import java.security.SecureRandom;
 import java.util.concurrent.CompletableFuture;
 
 import org.springframework.scheduling.annotation.Async;
@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class ResultService {
 	
-	private static final Random random = new Random ();
+	private static final SecureRandom random = new SecureRandom ();
 
 	@Async
 	public CompletableFuture <Integer []> doJob (int num) {

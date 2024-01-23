@@ -12,17 +12,15 @@ public class SimpleConfiguration {
 	private static final int MAX_THREADS = 5;
 	
 	// ThreadPoolTaskExecutor 를 활용하여 (비동기) 멀티 쓰레드 및 동시 실행 제한 설정
-	/*
 	@Bean
 	public ThreadPoolTaskExecutor taskExecutor () {
 		
 		ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor ();
-		taskExecutor.setCorePoolSize (maxThreads);
-		taskExecutor.setMaxPoolSize (maxThreads);
+		taskExecutor.setCorePoolSize (MAX_THREADS);
+		taskExecutor.setMaxPoolSize (MAX_THREADS);
 		// taskExecutor.setQueueCapacity (maxThreads);
 		taskExecutor.initialize ();
 	    
 	    return taskExecutor;
 	}
-	*/
 }
