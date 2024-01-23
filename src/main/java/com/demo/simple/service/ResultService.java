@@ -23,7 +23,7 @@ public class ResultService {
     		log.info ("Worker #{} duration : {} {} started", num, duration, result);
     		Thread.sleep (duration);
     		log.info ("Worker #{} duration : {} {} finished", num, duration, result);
-    	} catch (InterruptedException e) { e.printStackTrace (); }
+    	} catch (InterruptedException e) { Thread.currentThread().interrupt (); e.printStackTrace (); }
 
     	return CompletableFuture.completedFuture (result);
 	}

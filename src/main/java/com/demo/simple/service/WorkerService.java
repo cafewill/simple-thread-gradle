@@ -21,6 +21,6 @@ public class WorkerService {
     		log.info ("Worker #{} duration : {} started", num, duration);
     		Thread.sleep (duration);
     		log.info ("Worker #{} duration : {} finished", num, duration);
-    	} catch (InterruptedException e) { e.printStackTrace (); }
+    	} catch (InterruptedException e) { Thread.currentThread().interrupt (); e.printStackTrace (); }
     }
 }
